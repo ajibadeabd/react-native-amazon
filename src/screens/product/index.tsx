@@ -9,7 +9,7 @@
  */
 
  import React , { useState } from 'react';
- import { StyleSheet, Text, Image, View }  from 'react-native';
+ import { StyleSheet, Text, Image, View, ScrollView }  from 'react-native';
  import {Picker} from '@react-native-picker/picker';
  import styles from './style';
  import product from "../../components/data/product"
@@ -21,7 +21,7 @@
     const [ selectedOption, setSelectedOption ] = useState(product.options?product.options[0]:null)
     const [ quantity, setQuantity ] = useState(0)
    return (
-     <View style = {styles.root}>
+     <ScrollView style = {styles.root}>
        <Text>{product.title}</Text>
        <ImageCarousel images={product.images}/>
 
@@ -44,7 +44,7 @@
         <Button onPress={()=>{console.warn("warn")}} text={"Add To Cart"}/>
         <Button onPress={()=>{}} text={"Buy Now"} containerStyle={{backgroundColor:"red"}}/>
 
-     </View>
+     </ScrollView>
    );
  };
 

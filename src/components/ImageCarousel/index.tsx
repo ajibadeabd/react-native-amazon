@@ -8,7 +8,7 @@
  * @format
  */
 
- import React , { useState } from 'react';
+ import React , { useCallback, useState } from 'react';
  import {  Text, Image, View, useWindowDimensions,FlatList }  from 'react-native';
  import {Picker} from '@react-native-picker/picker';
  import styles from './styles';
@@ -22,6 +22,13 @@
      const [dot,setDot] = useState(0)
    const windowWidth = useWindowDimensions().width
    const windowHeigth= useWindowDimensions().height
+   const onFlatListUpdate  = useCallback(({viewableItems}:any)=>{
+    // const onFlatList  =({viewableItems}:{viewableItems:{index:number}[]})=>{
+    if(viewableItems.length>0){
+     setDot(viewableItems[0].index || 0)
+    }
+    console.log(viewableItems)
+ },[])
     return (
             <View>
                 <FlatList
@@ -32,11 +39,10 @@
                  snapToAlignment={"center"}
                  decelerationRate={"fast"}
                  viewabilityConfig={{
-                     viewAreaCoveragePercentageThreshold:50
-                 }}
-                //  onViewableItemsChanged={({viewableItems})=>{
-                //      console.warn(viewableItems)
-                //  }}
+                     viewAreaCoveragePercentageThreshold: 50,
+                     itemAreaCoveragePercentageThreshold: 50
+                 }} 
+                //  onViewableItemsChanged={onFlatListUpdate}
                  renderItem={({item})=>
                  <Image
                  style={[styles.image,{width:windowWidth-20, height:windowHeigth/4.5}]} 
