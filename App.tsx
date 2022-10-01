@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {type PropsWithChildren} from 'react';
+import React, { type PropsWithChildren } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -19,7 +19,9 @@ import {
   View,
 } from 'react-native';
 import HomeScreen from './src/screens/Home';
+import AddressScreen from './src/screens/Address';
 import ProductScreen from './src/screens/product';
+import ShoppingCartScreen from './src/screens/ShoppingCart';
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
@@ -35,7 +37,9 @@ const App = () => {
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       {/* <HomeScreen /> */}
-      <ProductScreen />
+      {/* <ProductScreen /> */}
+      {/* <ShoppingCartScreen/> */}
+      <AddressScreen />
     </SafeAreaView>
   );
 };

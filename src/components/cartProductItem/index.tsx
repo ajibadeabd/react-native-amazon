@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {StyleSheet, Text, Image, View} from 'react-native';
-import QuantitySelector from  "../../components/QuantitySelector"
+import QuantitySelector from '../QuantitySelector';
+import Button from  '../button';
 
 
-interface ProductItemsType {
-    item: {
+interface CartProductItemsType {
+ 
+   cartItem:{
+     id:string;
+     quantity:number;
+     option?:string;
+     item: {
         id: string;
         title: string;
         image: string;
@@ -13,13 +19,16 @@ interface ProductItemsType {
         ratings: number;
         price: number;
         oldPrice?: number;
-    },
+    },}
   }
 
-const ProductItem = ({item}: ProductItemsType)=>{
-  console.log("here")
+const cartProductItem = ({cartItem}: CartProductItemsType)=>{
+  const {item, quantity:quantityProp, id} = cartItem;
+  const [quantity, setQuantity] = useState(quantityProp);
+
     return (
             <View style={styles.root}>
+            <View style={styles.row}>
         <Image
           style={styles.image}
           source={{
@@ -51,19 +60,56 @@ const ProductItem = ({item}: ProductItemsType)=>{
             
             </Text>
         </View>
-        <QuantitySelector/>
+      </View>
+      <View style={styles.clipContainer}>
+      <Button text="Clip & Save up to $10" onPress={()=>{}} containerStyle={ styles.button }/>
+      </View >
+      <View style={styles.row2}>
+      <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
+      <View style={{
+        flexDirection:"row",
+        paddingLeft: 10,
+        }}>
+
+      <Button text="Delete" onPress={()=>{}} containerStyle={styles.button}/>
+      <Button text="Save for later" onPress={()=>{}} containerStyle={styles.button}/>
+      </View>
+      </View>
       </View>
     )
 }
 
 const styles = StyleSheet.create({
+  row2:{
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  clipContainer:{
+    marginLeft:106,
+    width:289
+
+
+  },
+  button:{
+    color: "grey",
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#d1d1d1',
+    borderRadius:5,
+    marginHorizontal: 11,
+    paddingHorizontal: 17
+  },
+  row:{
+    flexDirection: 'row',
+
+  },
     root: {
-      flexDirection: 'row',
       borderRadius: 10,
       borderWidth: 1,
       borderColor: '#d1d1d1',
       backgroundColor: '#fff',
-      margin: 5,
+      marginVertical: 5,
+      padding: 10,
 
     },
     page: {
@@ -72,11 +118,12 @@ const styles = StyleSheet.create({
     image: {
       resizeMode: 'contain',
       height: 150,
-      flex: 2,
+      flex: 1.6,
+      paddingTop:0
     },
     rightContainer: {
-      padding: 10,
-      flex: 3,
+      paddingHorizontal: 10,
+      flex: 4.9,
   
     },
     title: {
@@ -102,4 +149,4 @@ const styles = StyleSheet.create({
       margin:2
     }
   });
-export default ProductItem;
+export default cartProductItem

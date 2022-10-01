@@ -10,7 +10,6 @@
 
  import React , { useCallback, useState } from 'react';
  import {  Text, Image, View, useWindowDimensions,FlatList }  from 'react-native';
- import {Picker} from '@react-native-picker/picker';
  import styles from './styles';
 
 
@@ -39,10 +38,9 @@
                  snapToAlignment={"center"}
                  decelerationRate={"fast"}
                  viewabilityConfig={{
-                     viewAreaCoveragePercentageThreshold: 50,
-                     itemAreaCoveragePercentageThreshold: 50
+                     viewAreaCoveragePercentThreshold: 50,
                  }} 
-                //  onViewableItemsChanged={onFlatListUpdate}
+                 onViewableItemsChanged={onFlatListUpdate}
                  renderItem={({item})=>
                  <Image
                  style={[styles.image,{width:windowWidth-20, height:windowHeigth/4.5}]} 

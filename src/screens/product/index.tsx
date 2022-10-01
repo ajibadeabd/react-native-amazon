@@ -25,7 +25,6 @@
        <Text>{product.title}</Text>
        <ImageCarousel images={product.images}/>
 
-
        <Picker
        selectedValue={selectedOption}
        onValueChange={(value,itemIndex)=>setSelectedOption(value)}
