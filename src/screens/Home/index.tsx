@@ -9,25 +9,25 @@
  */
 
 import React from 'react';
-import {StyleSheet, Text, Image, View, FlatList} from 'react-native';
-import CartProductItem from  "../../components/cartProductItem"
-import products   from  "../../components/data/cart"
-const HomeScreen = () => {
+import {StyleSheet, View, FlatList} from 'react-native';
+import ProductItem from '../../components/product-item';
+import products from '../../components/data/products';
+const HomeScreen = ({searchValue}: {searchValue: string}) => {
+  console.log(searchValue);
   return (
     <View style={styles.page}>
-       <FlatList 
-       data={products}
-       showsVerticalScrollIndicator={false}
-       renderItem={({item})=><CartProductItem cartItem={item}/>}
-       />
+      <FlatList
+        data={products}
+        showsVerticalScrollIndicator={false}
+        renderItem={({item}) => <ProductItem item={item} />}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  
   page: {
     padding: 10,
-  }, 
+  },
 });
 export default HomeScreen;
